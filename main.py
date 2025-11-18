@@ -25,6 +25,11 @@ char_equal_y_pos = 200
 char_equal_width = 100
 char_equal_length = 100
 
+char_2_x_pos = 650
+char_2_y_pos = 500
+char_2_width = 100
+char_2_length = 100
+
 list_of_inputs = []
 lisd_of_inputs_2 = []
 numbers = []
@@ -43,6 +48,10 @@ char_add_rect = char_add.get_rect(topleft=(char_add_x_pos, char_add_y_pos))
 char_equal = pygame.image.load("sprites/Char-Equal.png")
 char_equal = pygame.transform.scale(char_equal, (char_equal_length, char_equal_width))
 char_equal_rect = char_equal.get_rect(topleft=(char_equal_x_pos, char_equal_y_pos))
+
+char_2 = pygame.image.load("sprites/Char-2.png")
+char_2 = pygame.transform.scale(char_2, (char_2_length, char_2_width))
+char_2_rect = char_2.get_rect(topleft=(char_2_x_pos, char_2_y_pos))
 
 # this does the math :)
 def equation(inputs):
@@ -66,6 +75,8 @@ while run:
     screen.blit(char_add, char_add_rect)
 
     screen.blit(char_equal, char_equal_rect)
+
+    screen.blit(char_2, char_2_rect)
     
     # idk what this is for, but it doesnt work without it.
     pygame.display.flip()
@@ -84,9 +95,13 @@ while run:
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_pos = event.pos
 
-            # the number 1 on the calculator GUI
+            # the numbers on the calculator GUI
             if char_1_rect.collidepoint(event.pos):
                 list_of_inputs.append(1)
+                print(list_of_inputs)
+                
+            elif char_2_rect.collidepoint(event.pos):
+                list_of_inputs.append(2)
                 print(list_of_inputs)
 
             # the plus symbol on the calculator GUI
@@ -99,6 +114,7 @@ while run:
                 result = equation(list_of_inputs)
                 print(result)
                 list_of_inputs = []
+
                 
 # No clue what this does either, but it was put here in the introductory tutorial that teaches practically nothing except how to put a square on the screen. I trust them :)
 pygame.quit()
