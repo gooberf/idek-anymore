@@ -136,6 +136,10 @@ def equation(inputs):
             if n == 0:
                 return "Error: Division by zero"
             new_nums[-1] = new_nums[-1] / n
+        elif op =='//':
+            if n == 0:
+                return "Error: Division by zero"
+            new_nums[-1] = new_nums[-1] // n
         else:
             new_ops.append(op)
             new_nums.append(n)
@@ -217,6 +221,10 @@ while run:
 
             elif char_6_rect.collidepoint(event.pos):
                 list_of_inputs.append(6)
+                print(list_of_inputs)
+            
+            elif char_0_rect.collidepoint(event.pos):
+                list_of_inputs.append(0)
                 print(list_of_inputs)
 
             # the plus symbol on the calculator GUI
