@@ -10,40 +10,50 @@ clock = pygame.time.Clock()
 run = True
 
 # pretty self explanitory. Sizes and positioning.
-char_1_x_pos = 800
-char_1_y_pos = 500
+char_0_x_pos = 390
+char_0_y_pos = 705
+char_0_width = 100
+char_0_length = 100
+
+char_1_x_pos = 495
+char_1_y_pos = 600
 char_1_width = 100
 char_1_length = 100
 
-char_add_x_pos = 800
-char_add_y_pos = 350
+char_add_x_pos = 600
+char_add_y_pos = 495
 char_add_width = 100
 char_add_length = 100
 
-char_equal_x_pos = 800
-char_equal_y_pos = 200
+char_equal_x_pos = 600
+char_equal_y_pos = 600
 char_equal_width = 100
 char_equal_length = 100
 
-char_2_x_pos = 650
-char_2_y_pos = 500
+char_2_x_pos = 390
+char_2_y_pos = 600
 char_2_width = 100
 char_2_length = 100
 
-char_3_x_pos = 650
-char_3_y_pos = 350
+char_3_x_pos = 285
+char_3_y_pos = 600
 char_3_width = 100
 char_3_length = 100
 
-char_4_x_pos = 650
-char_4_y_pos = 200
+char_4_x_pos = 495
+char_4_y_pos = 495
 char_4_width = 100
 char_4_length = 100
 
-char_5_x_pos = 650
-char_5_y_pos = 50
+char_5_x_pos = 390
+char_5_y_pos = 495
 char_5_width = 100
 char_5_length = 100
+
+char_6_x_pos = 285
+char_6_y_pos = 495
+char_6_width = 100
+char_6_length = 100
 
 list_of_inputs = []
 numbers = []
@@ -51,6 +61,10 @@ operator = []
 history = [] # for making the history later on
 
 # Load the image, and getting the rect/hitbox in a sense
+char_0 = pygame.image.load("sprites/Char-0.png")
+char_0 = pygame.transform.scale(char_0, (char_0_length, char_0_width))
+char_0_rect = char_0.get_rect(topleft=(char_0_x_pos, char_0_y_pos))
+
 char_1 = pygame.image.load("sprites/Char-1.png")
 char_1 = pygame.transform.scale(char_1, (char_1_length, char_1_width))  # Resize the image
 char_1_rect = char_1.get_rect(topleft=(char_1_x_pos, char_1_y_pos))
@@ -78,6 +92,10 @@ char_4_rect = char_4.get_rect(topleft=(char_4_x_pos, char_4_y_pos))
 char_5 = pygame.image.load("sprites/Char-5.png")
 char_5 = pygame.transform.scale(char_5, (char_5_length, char_5_width))
 char_5_rect = char_5.get_rect(topleft=(char_5_x_pos, char_5_y_pos))
+
+char_6 = pygame.image.load("sprites/Char-6.png")
+char_6 = pygame.transform.scale(char_6, (char_6_length, char_6_width))
+char_6_rect = char_6.get_rect(topleft=(char_6_x_pos, char_6_y_pos))
 
 # this does the math :)
 def equation(inputs):
@@ -141,11 +159,13 @@ while run:
     screen.fill((100, 100, 100))
     
     # Shows the characters
-    screen.blit(char_1, char_1_rect)
+    screen.blit(char_equal, char_equal_rect)
 
     screen.blit(char_add, char_add_rect)
 
-    screen.blit(char_equal, char_equal_rect)
+    screen.blit(char_0, char_0_rect)
+
+    screen.blit(char_1, char_1_rect)
 
     screen.blit(char_2, char_2_rect)
 
@@ -154,6 +174,8 @@ while run:
     screen.blit(char_4, char_4_rect)
 
     screen.blit(char_5, char_5_rect)
+
+    screen.blit(char_6, char_6_rect)
 
     # idk what this is for, but it doesnt work without it.
     pygame.display.flip()
@@ -193,7 +215,9 @@ while run:
                 list_of_inputs.append(5)
                 print(list_of_inputs)
 
-                
+            elif char_6_rect.collidepoint(event.pos):
+                list_of_inputs.append(6)
+                print(list_of_inputs)
 
             # the plus symbol on the calculator GUI
             elif char_add_rect.collidepoint(event.pos):
