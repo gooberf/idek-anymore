@@ -30,11 +30,25 @@ char_2_y_pos = 500
 char_2_width = 100
 char_2_length = 100
 
+char_3_x_pos = 650
+char_3_y_pos = 350
+char_3_width = 100
+char_3_length = 100
+
+char_4_x_pos = 650
+char_4_y_pos = 200
+char_4_width = 100
+char_4_length = 100
+
+char_5_x_pos = 650
+char_5_y_pos = 50
+char_5_width = 100
+char_5_length = 100
+
 list_of_inputs = []
-lisd_of_inputs_2 = []
 numbers = []
 operator = []
-history = []
+history = [] # for making the history later on
 
 # Load the image, and getting the rect/hitbox in a sense
 char_1 = pygame.image.load("sprites/Char-1.png")
@@ -52,6 +66,18 @@ char_equal_rect = char_equal.get_rect(topleft=(char_equal_x_pos, char_equal_y_po
 char_2 = pygame.image.load("sprites/Char-2.png")
 char_2 = pygame.transform.scale(char_2, (char_2_length, char_2_width))
 char_2_rect = char_2.get_rect(topleft=(char_2_x_pos, char_2_y_pos))
+
+char_3 = pygame.image.load("sprites/Char-3.png")
+char_3 = pygame.transform.scale(char_3, (char_3_length, char_3_width))
+char_3_rect = char_3.get_rect(topleft=(char_3_x_pos, char_3_y_pos))
+
+char_4 = pygame.image.load("sprites/Char-4.png")
+char_4 = pygame.transform.scale(char_4, (char_4_length, char_4_width))
+char_4_rect = char_4.get_rect(topleft=(char_4_x_pos, char_4_y_pos))
+
+char_5 = pygame.image.load("sprites/Char-5.png")
+char_5 = pygame.transform.scale(char_5, (char_5_length, char_5_width))
+char_5_rect = char_5.get_rect(topleft=(char_5_x_pos, char_5_y_pos))
 
 # this does the math :)
 def equation(inputs):
@@ -77,7 +103,13 @@ while run:
     screen.blit(char_equal, char_equal_rect)
 
     screen.blit(char_2, char_2_rect)
+
+    screen.blit(char_3, char_3_rect)
     
+    screen.blit(char_4, char_4_rect)
+
+    screen.blit(char_5, char_5_rect)
+
     # idk what this is for, but it doesnt work without it.
     pygame.display.flip()
     
@@ -103,6 +135,20 @@ while run:
             elif char_2_rect.collidepoint(event.pos):
                 list_of_inputs.append(2)
                 print(list_of_inputs)
+            
+            elif char_3_rect.collidepoint(event.pos):
+                list_of_inputs.append(3)
+                print(list_of_inputs)
+
+            elif char_4_rect.collidepoint(event.pos):
+                list_of_inputs.append(4)
+                print(list_of_inputs)
+
+            elif char_5_rect.collidepoint(event.pos):
+                list_of_inputs.append(5)
+                print(list_of_inputs)
+
+                
 
             # the plus symbol on the calculator GUI
             elif char_add_rect.collidepoint(event.pos):
