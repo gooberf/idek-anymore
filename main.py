@@ -81,13 +81,58 @@ char_5_rect = char_5.get_rect(topleft=(char_5_x_pos, char_5_y_pos))
 
 # this does the math :)
 def equation(inputs):
-    total = 0
+    # combine consecutive digit clicks into multi-digit numbers, then evaluate
+    if not inputs:
+        return 0
+
+    nums = []
+    ops = []
+    current = None
+
     for item in inputs:
         if isinstance(item, int):
-            total += item
-        elif item in ['+', '-', '*', '/']:
-            operator.append(item)
-    return total
+            if current is None:
+                current = item
+            else:
+                current = current * 10 + item
+        else:
+            # operator encountered
+            if current is None:
+                # if expression starts with an operator, treat previous as 0
+                current = 0
+            nums.append(current)
+            ops.append(item)
+            current = None
+
+    if current is None:
+        current = 0
+    nums.append(current)
+
+    # handle * and / first (precedence), then + and -
+    new_nums = [nums[0]]
+    new_ops = []
+    for op, n in zip(ops, nums[1:]):
+        if op == '*':
+            new_nums[-1] = new_nums[-1] * n
+        elif op == '/':
+            if n == 0:
+                return "Error: Division by zero"
+            new_nums[-1] = new_nums[-1] / n
+        else:
+            new_ops.append(op)
+            new_nums.append(n)
+
+    result = new_nums[0]
+    for op, n in zip(new_ops, new_nums[1:]):
+        if op == '+':
+            result += n
+        elif op == '-':
+            result -= n
+
+    # return int when result is a whole number
+    if isinstance(result, float) and result.is_integer():
+        return int(result)
+    return result
 
 
 while run:
