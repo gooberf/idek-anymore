@@ -55,6 +55,11 @@ char_6_y_pos = 495
 char_6_width = 100
 char_6_length = 100
 
+char_7_x_pos = 495
+char_7_y_pos = 390
+char_7_width = 100
+char_7_length = 100
+
 list_of_inputs = []
 numbers = []
 operator = []
@@ -96,6 +101,10 @@ char_5_rect = char_5.get_rect(topleft=(char_5_x_pos, char_5_y_pos))
 char_6 = pygame.image.load("sprites/Char-6.png")
 char_6 = pygame.transform.scale(char_6, (char_6_length, char_6_width))
 char_6_rect = char_6.get_rect(topleft=(char_6_x_pos, char_6_y_pos))
+
+char_7 = pygame.image.load("sprites/Char-7.png")
+char_7 = pygame.transform.scale(char_7, (char_7_length, char_7_width))
+char_7_rect = char_7.get_rect(topleft=(char_7_x_pos, char_7_y_pos))
 
 # this does the math :)
 def equation(inputs):
@@ -181,6 +190,8 @@ while run:
 
     screen.blit(char_6, char_6_rect)
 
+    screen.blit(char_7, char_7_rect)
+
     # idk what this is for, but it doesnt work without it.
     pygame.display.flip()
     
@@ -221,6 +232,10 @@ while run:
 
             elif char_6_rect.collidepoint(event.pos):
                 list_of_inputs.append(6)
+                print(list_of_inputs)
+
+            elif char_7_rect.collidepoint(event.pos):
+                list_of_inputs.append(7)
                 print(list_of_inputs)
             
             elif char_0_rect.collidepoint(event.pos):
