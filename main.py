@@ -26,7 +26,7 @@ char_add_width = 100
 char_add_length = 100
 
 char_equal_x_pos = 600
-char_equal_y_pos = 600
+char_equal_y_pos = 705
 char_equal_width = 100
 char_equal_length = 100
 
@@ -65,10 +65,30 @@ char_8_y_pos = 390
 char_8_width = 100
 char_8_length = 100
 
+char_9_x_pos = 285
+char_9_y_pos = 390
+char_9_width = 100
+char_9_length = 100
+
 char_sub_x_pos = 600
 char_sub_y_pos = 390
 char_sub_width = 100
 char_sub_length = 100
+
+char_div_x_pos = 495
+char_div_y_pos = 705
+char_div_width = 100
+char_div_length = 100
+
+char_mul_x_pos = 285
+char_mul_y_pos = 705
+char_mul_width = 100
+char_mul_length = 100
+
+char_fd_x_pos = 600
+char_fd_y_pos = 600
+char_fd_width = 100
+char_fd_length = 100
 
 list_of_inputs = []
 numbers = []
@@ -120,9 +140,25 @@ char_8 = pygame.image.load("sprites/Char-8.png")
 char_8 = pygame.transform.scale(char_8, (char_8_length, char_8_width))
 char_8_rect = char_8.get_rect(topleft=(char_8_x_pos, char_8_y_pos))
 
+char_9 = pygame.image.load("sprites/Char-9.png")
+char_9 = pygame.transform.scale(char_9, (char_9_length, char_9_width))
+char_9_rect = char_9.get_rect(topleft=(char_9_x_pos, char_9_y_pos))
+
 char_sub = pygame.image.load("sprites/Char-Subtraction.png")
 char_sub = pygame.transform.scale(char_sub, (char_sub_length, char_sub_width))
 char_sub_rect = char_sub.get_rect(topleft=(char_sub_x_pos, char_sub_y_pos))
+
+char_div = pygame.image.load("sprites/Char-Division.png")
+char_div = pygame.transform.scale(char_div, (char_div_length, char_div_width))
+char_div_rect = char_div.get_rect(topleft=(char_div_x_pos, char_div_y_pos))
+
+char_mul = pygame.image.load("sprites/Char-Multiplication.png")
+char_mul = pygame.transform.scale(char_mul, (char_mul_length, char_mul_width))
+char_mul_rect = char_mul.get_rect(topleft=(char_mul_x_pos, char_mul_y_pos))
+
+char_fd = pygame.image.load("sprites/Char-Floored_Division.png")
+char_fd = pygame.transform.scale(char_fd, (char_fd_length, char_fd_width))
+char_fd_rect = char_fd.get_rect(topleft=(char_fd_x_pos, char_fd_y_pos))
 
 # this does the math :)
 def equation(inputs):
@@ -196,6 +232,12 @@ while run:
 
     screen.blit(char_sub, char_sub_rect)
 
+    screen.blit(char_div, char_div_rect)
+
+    screen.blit(char_mul, char_mul_rect)
+
+    screen.blit(char_fd, char_fd_rect) 
+
     screen.blit(char_0, char_0_rect)
 
     screen.blit(char_1, char_1_rect)
@@ -213,6 +255,8 @@ while run:
     screen.blit(char_7, char_7_rect)
 
     screen.blit(char_8, char_8_rect)
+
+    screen.blit(char_9, char_9_rect)
 
     # idk what this is for, but it doesnt work without it.
     pygame.display.flip()
@@ -263,6 +307,10 @@ while run:
             elif char_8_rect.collidepoint(event.pos):
                 list_of_inputs.append(8)
                 print(list_of_inputs)
+
+            elif char_9_rect.collidepoint(event.pos):
+                list_of_inputs.append(9)
+                print(list_of_inputs)
             
             elif char_0_rect.collidepoint(event.pos):
                 list_of_inputs.append(0)
@@ -275,6 +323,18 @@ while run:
 
             elif char_sub_rect.collidepoint(event.pos):
                 list_of_inputs.append("-")
+                print(list_of_inputs)
+
+            elif char_div_rect.collidepoint(event.pos):
+                list_of_inputs.append("/")
+                print(list_of_inputs)
+            
+            elif char_mul_rect.collidepoint(event.pos):
+                list_of_inputs.append("*")
+                print(list_of_inputs)
+
+            elif char_fd_rect.collidepoint(event.pos):
+                list_of_inputs.append("//")
                 print(list_of_inputs)
 
             # the equalization symbol on the calculator GUI
