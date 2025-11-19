@@ -60,6 +60,16 @@ char_7_y_pos = 390
 char_7_width = 100
 char_7_length = 100
 
+char_8_x_pos = 390
+char_8_y_pos = 390
+char_8_width = 100
+char_8_length = 100
+
+char_sub_x_pos = 600
+char_sub_y_pos = 390
+char_sub_width = 100
+char_sub_length = 100
+
 list_of_inputs = []
 numbers = []
 operator = []
@@ -105,6 +115,14 @@ char_6_rect = char_6.get_rect(topleft=(char_6_x_pos, char_6_y_pos))
 char_7 = pygame.image.load("sprites/Char-7.png")
 char_7 = pygame.transform.scale(char_7, (char_7_length, char_7_width))
 char_7_rect = char_7.get_rect(topleft=(char_7_x_pos, char_7_y_pos))
+
+char_8 = pygame.image.load("sprites/Char-8.png")
+char_8 = pygame.transform.scale(char_8, (char_8_length, char_8_width))
+char_8_rect = char_8.get_rect(topleft=(char_8_x_pos, char_8_y_pos))
+
+char_sub = pygame.image.load("sprites/Char-Subtraction.png")
+char_sub = pygame.transform.scale(char_sub, (char_sub_length, char_sub_width))
+char_sub_rect = char_sub.get_rect(topleft=(char_sub_x_pos, char_sub_y_pos))
 
 # this does the math :)
 def equation(inputs):
@@ -176,6 +194,8 @@ while run:
 
     screen.blit(char_add, char_add_rect)
 
+    screen.blit(char_sub, char_sub_rect)
+
     screen.blit(char_0, char_0_rect)
 
     screen.blit(char_1, char_1_rect)
@@ -191,6 +211,8 @@ while run:
     screen.blit(char_6, char_6_rect)
 
     screen.blit(char_7, char_7_rect)
+
+    screen.blit(char_8, char_8_rect)
 
     # idk what this is for, but it doesnt work without it.
     pygame.display.flip()
@@ -237,6 +259,10 @@ while run:
             elif char_7_rect.collidepoint(event.pos):
                 list_of_inputs.append(7)
                 print(list_of_inputs)
+
+            elif char_8_rect.collidepoint(event.pos):
+                list_of_inputs.append(8)
+                print(list_of_inputs)
             
             elif char_0_rect.collidepoint(event.pos):
                 list_of_inputs.append(0)
@@ -245,6 +271,10 @@ while run:
             # the plus symbol on the calculator GUI
             elif char_add_rect.collidepoint(event.pos):
                 list_of_inputs.append("+")
+                print(list_of_inputs)
+
+            elif char_sub_rect.collidepoint(event.pos):
+                list_of_inputs.append("-")
                 print(list_of_inputs)
 
             # the equalization symbol on the calculator GUI
