@@ -9,6 +9,13 @@ screen = pygame.display.set_mode((420, 520))
 clock = pygame.time.Clock()
 run = True
 
+# for the text display
+text_font = pygame.font.SysFont(None, 30)
+
+def draw_text(text, font, text_col, x, y):
+    image = font.render(text, True, text_col)
+    screen.blit(image, (x, y))
+
 # pretty self explanitory. Sizes and positioning.
 char_0_x_pos = 105
 char_0_y_pos = 705 - 290
@@ -341,6 +348,7 @@ while run:
             elif char_equal_rect.collidepoint(event.pos):
                 result = equation(list_of_inputs)
                 print(result)
+                draw_text(str(result), text_font, "Black", 0, 0)
                 list_of_inputs = []
 
                 
