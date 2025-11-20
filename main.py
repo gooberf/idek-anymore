@@ -5,90 +5,90 @@ from pygame import *
 pygame.init()
 
 # basics for the window
-screen = pygame.display.set_mode((1000, 1000))
+screen = pygame.display.set_mode((420, 520))
 clock = pygame.time.Clock()
 run = True
 
 # pretty self explanitory. Sizes and positioning.
-char_0_x_pos = 390
-char_0_y_pos = 705
-char_0_width = 100
-char_0_length = 100
+char_0_x_pos = 105
+char_0_y_pos = 705 - 290
+char_0_width = 105
+char_0_length = 105
 
-char_1_x_pos = 495
-char_1_y_pos = 600
-char_1_width = 100
-char_1_length = 100
+char_1_x_pos = 210
+char_1_y_pos = 600 - 290
+char_1_width = 105
+char_1_length = 105
 
-char_add_x_pos = 600
-char_add_y_pos = 495
-char_add_width = 100
-char_add_length = 100
+char_add_x_pos = 315
+char_add_y_pos = 495 - 290
+char_add_width = 105
+char_add_length = 105
 
-char_equal_x_pos = 600
-char_equal_y_pos = 705
-char_equal_width = 100
-char_equal_length = 100
+char_equal_x_pos = 315
+char_equal_y_pos = 705 - 290
+char_equal_width = 105
+char_equal_length = 105
 
-char_2_x_pos = 390
-char_2_y_pos = 600
-char_2_width = 100
-char_2_length = 100
+char_2_x_pos = 105
+char_2_y_pos = 600 - 290
+char_2_width = 105
+char_2_length = 105
 
-char_3_x_pos = 285
-char_3_y_pos = 600
-char_3_width = 100
-char_3_length = 100
+char_3_x_pos = 0
+char_3_y_pos = 600 - 290
+char_3_width = 105
+char_3_length = 105
 
-char_4_x_pos = 495
-char_4_y_pos = 495
-char_4_width = 100
-char_4_length = 100
+char_4_x_pos = 210
+char_4_y_pos = 495 - 290
+char_4_width = 105
+char_4_length = 105
 
-char_5_x_pos = 390
-char_5_y_pos = 495
-char_5_width = 100
-char_5_length = 100
+char_5_x_pos = 105
+char_5_y_pos = 495 - 290
+char_5_width = 105
+char_5_length = 105
 
-char_6_x_pos = 285
-char_6_y_pos = 495
-char_6_width = 100
-char_6_length = 100
+char_6_x_pos = 0
+char_6_y_pos = 495 - 290
+char_6_width = 105
+char_6_length = 105
 
-char_7_x_pos = 495
-char_7_y_pos = 390
-char_7_width = 100
-char_7_length = 100
+char_7_x_pos = 210
+char_7_y_pos = 390 - 290
+char_7_width = 105
+char_7_length = 105
 
-char_8_x_pos = 390
-char_8_y_pos = 390
-char_8_width = 100
-char_8_length = 100
+char_8_x_pos = 105
+char_8_y_pos = 390 - 290
+char_8_width = 105
+char_8_length = 105
 
-char_9_x_pos = 285
-char_9_y_pos = 390
-char_9_width = 100
-char_9_length = 100
+char_9_x_pos = 0
+char_9_y_pos = 390 - 290
+char_9_width = 105
+char_9_length = 105
 
-char_sub_x_pos = 600
-char_sub_y_pos = 390
-char_sub_width = 100
-char_sub_length = 100
+char_sub_x_pos = 315
+char_sub_y_pos = 390 - 290
+char_sub_width = 105
+char_sub_length = 105
 
-char_div_x_pos = 495
-char_div_y_pos = 705
-char_div_width = 100
-char_div_length = 100
+char_div_x_pos = 210
+char_div_y_pos = 705 - 290
+char_div_width = 105
+char_div_length = 105
 
-char_mul_x_pos = 285
-char_mul_y_pos = 705
-char_mul_width = 100
-char_mul_length = 100
+char_mul_x_pos = 0
+char_mul_y_pos = 705 - 290
+char_mul_width = 105
+char_mul_length = 105
 
-char_fd_x_pos = 600
-char_fd_y_pos = 600
-char_fd_width = 100
-char_fd_length = 100
+char_fd_x_pos = 315
+char_fd_y_pos = 600 - 290
+char_fd_width = 105
+char_fd_length = 105
 
 list_of_inputs = []
 numbers = []
