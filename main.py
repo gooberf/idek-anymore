@@ -5,16 +5,44 @@ from pygame import *
 pygame.init()
 
 # basics for the window
-screen = pygame.display.set_mode((420, 520))
+screen = pygame.display.set_mode((420, 625))
 clock = pygame.time.Clock()
 run = True
 
 # for the text display
-text_font = pygame.font.SysFont(None, 100)
+BASE_FONT_SIZE = 100
+
+the_font = pygame.font.SysFont(None, BASE_FONT_SIZE)
+
+
+def get_font_size(base_size, text):
+    size = base_size - len(text) * 2
+    return max(20, size)   # never let the font get too small
+
+
 
 def draw_text(text, font, text_col, x, y):
-    image = font.render(text, True, text_col)
+    # allow passing either a color tuple or a color name string
+    if isinstance(text_col, str):
+        try:
+            color = pygame.Color(text_col)
+        except Exception:
+            color = (0, 0, 0)
+    else:
+        color = text_col
+    image = font.render(text, True, color)
     screen.blit(image, (x, y))
+
+
+def inputs_to_string(inputs):
+    """Convert the list_of_inputs into a human-readable expression string.
+
+    Consecutive digit entries become multi-digit numbers visually (e.g. [1,2,'+','3'] -> '12+3').
+    """
+    s = ""
+    for item in inputs:
+        s += str(item)
+    return s
 
 # pretty self explanitory. Sizes and positioning.
 char_0_x_pos = 105
@@ -97,6 +125,11 @@ char_fd_y_pos = 600 - 290
 char_fd_width = 105
 char_fd_length = 105
 
+char_hs_x_pos = 420/2 - 105
+char_hs_y_pos = 520
+char_hs_width = 105
+char_hs_length = 210
+
 list_of_inputs = []
 numbers = []
 operator = []
@@ -167,6 +200,10 @@ char_fd = pygame.image.load("sprites/Char-Floored_Division.png")
 char_fd = pygame.transform.scale(char_fd, (char_fd_length, char_fd_width))
 char_fd_rect = char_fd.get_rect(topleft=(char_fd_x_pos, char_fd_y_pos))
 
+char_history = pygame.image.load("sprites/Char-History.png")
+char_history = pygame.transform.scale(char_history, (char_hs_length, char_hs_width))
+char_history_rect = char_history.get_rect(topleft=(char_hs_x_pos, char_hs_y_pos))
+
 # this does the math :)
 def equation(inputs):
     # combine consecutive digit clicks into multi-digit numbers, then evaluate
@@ -226,7 +263,7 @@ def equation(inputs):
         return int(result)
     return result
 
-result = 0
+result = None
 
 while run:
 
@@ -245,6 +282,8 @@ while run:
     screen.blit(char_mul, char_mul_rect)
 
     screen.blit(char_fd, char_fd_rect) 
+
+    screen.blit(char_history, char_history_rect)
 
     screen.blit(char_0, char_0_rect)
 
@@ -266,8 +305,21 @@ while run:
 
     screen.blit(char_9, char_9_rect)
     
-    if result:
-        draw_text(str(result), text_font, "Black", 0, 0)
+    # choose what to display on the top line:
+    # - show the current expression while typing
+    # - if there's no current expression (e.g. after pressing '='), show the result on the same line
+    expr_str = inputs_to_string(list_of_inputs)
+    if expr_str:
+        top_text = expr_str
+    elif result is not None:
+        top_text = str(result)
+    else:
+        top_text = ""
+
+    if top_text:
+        top_size = get_font_size(BASE_FONT_SIZE, top_text)
+        top_font = pygame.font.SysFont(None, top_size)
+        draw_text(top_text, top_font, (0, 0, 0), 0, 0)
 
     # idk what this is for, but it doesnt work without it.
     pygame.display.flip()
@@ -352,8 +404,11 @@ while run:
             elif char_equal_rect.collidepoint(event.pos):
                 result = equation(list_of_inputs)
                 print(result)
-                draw_text(str(result), text_font, "Black", 0, 0)
+                history.append(result)
+                # clear the current input expression after computing
                 list_of_inputs = []
+            elif char_history_rect.collidepoint(event.pos):
+                print(history)
 
                 
 # No clue what this does either, but it was put here in the introductory tutorial that teaches practically nothing except how to put a square on the screen. I trust them :)
