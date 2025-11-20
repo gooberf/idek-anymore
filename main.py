@@ -10,7 +10,7 @@ clock = pygame.time.Clock()
 run = True
 
 # for the text display
-text_font = pygame.font.SysFont(None, 30)
+text_font = pygame.font.SysFont(None, 100)
 
 def draw_text(text, font, text_col, x, y):
     image = font.render(text, True, text_col)
@@ -226,6 +226,7 @@ def equation(inputs):
         return int(result)
     return result
 
+result = 0
 
 while run:
 
@@ -264,6 +265,9 @@ while run:
     screen.blit(char_8, char_8_rect)
 
     screen.blit(char_9, char_9_rect)
+    
+    if result:
+        draw_text(str(result), text_font, "Black", 0, 0)
 
     # idk what this is for, but it doesnt work without it.
     pygame.display.flip()
