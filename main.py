@@ -14,6 +14,27 @@ BASE_FONT_SIZE = 100
 
 the_font = pygame.font.SysFont(None, BASE_FONT_SIZE)
 
+# sprite info dict
+
+spriteinfo = {
+    "char_0": {"path": "sprites/Char-0.png", "pos": (105, 705 - 290), "size": (105, 105)},
+    "char_1": {"path": "sprites/Char-1.png", "pos": (210, 600 - 290), "size": (105, 105)},
+    "char_2": {"path": "sprites/Char-2.png", "pos": (105, 600 - 290), "size": (105, 105)},
+    "char_3": {"path": "sprites/Char-3.png", "pos": (0, 600 - 290), "size": (105, 105)},
+    "char_4": {"path": "sprites/Char-4.png", "pos": (210, 495 - 290), "size": (105, 105)},
+    "char_5": {"path": "sprites/Char-5.png", "pos": (105, 495 - 290), "size": (105, 105)},
+    "char_6": {"path": "sprites/Char-6.png", "pos": (0, 495 - 290), "size": (105, 105)},
+    "char_7": {"path": "sprites/Char-7.png", "pos": (210, 390 - 290), "size": (105, 105)},
+    "char_8": {"path": "sprites/Char-8.png", "pos": (105, 390 - 290), "size": (105, 105)},
+    "char_9": {"path": "sprites/Char-9.png", "pos": (0, 390 - 290), "size": (105, 105)},
+    "char_add": {"path": "sprites/Char-Add.png", "pos": (315, 495 - 290), "size": (105, 105)},
+    "char_sub": {"path": "sprites/Char-Subtraction.png", "pos": (315, 390 - 290), "size": (105, 105)},
+    "char_div": {"path": "sprites/Char-Division.png", "pos": (210, 705 - 290), "size": (105, 105)},
+    "char_mul": {"path": "sprites/Char-Multiplication.png", "pos": (0, 705 - 290), "size": (105, 105)},
+    "char_fd": {"path": "sprites/Char-Floored_Division.png", "pos": (315, 600 - 290), "size": (105, 105)},
+    "char_equal": {"path": "sprites/Char-Equal.png", "pos": (315, 705 - 290), "size": (105, 105)},
+    "char_history": {"path": "sprites/Char-History.png", "pos": (420/2 - 105, 520), "size": (105, 210)},
+}
 
 def get_font_size(base_size, text):
     size = base_size - len(text) * 2
@@ -44,165 +65,79 @@ def inputs_to_string(inputs):
         s += str(item)
     return s
 
-# pretty self explanitory. Sizes and positioning.
-char_0_x_pos = 105
-char_0_y_pos = 705 - 290
-char_0_width = 105
-char_0_length = 105
-
-char_1_x_pos = 210
-char_1_y_pos = 600 - 290
-char_1_width = 105
-char_1_length = 105
-
-char_add_x_pos = 315
-char_add_y_pos = 495 - 290
-char_add_width = 105
-char_add_length = 105
-
-char_equal_x_pos = 315
-char_equal_y_pos = 705 - 290
-char_equal_width = 105
-char_equal_length = 105
-
-char_2_x_pos = 105
-char_2_y_pos = 600 - 290
-char_2_width = 105
-char_2_length = 105
-
-char_3_x_pos = 0
-char_3_y_pos = 600 - 290
-char_3_width = 105
-char_3_length = 105
-
-char_4_x_pos = 210
-char_4_y_pos = 495 - 290
-char_4_width = 105
-char_4_length = 105
-
-char_5_x_pos = 105
-char_5_y_pos = 495 - 290
-char_5_width = 105
-char_5_length = 105
-
-char_6_x_pos = 0
-char_6_y_pos = 495 - 290
-char_6_width = 105
-char_6_length = 105
-
-char_7_x_pos = 210
-char_7_y_pos = 390 - 290
-char_7_width = 105
-char_7_length = 105
-
-char_8_x_pos = 105
-char_8_y_pos = 390 - 290
-char_8_width = 105
-char_8_length = 105
-
-char_9_x_pos = 0
-char_9_y_pos = 390 - 290
-char_9_width = 105
-char_9_length = 105
-
-char_sub_x_pos = 315
-char_sub_y_pos = 390 - 290
-char_sub_width = 105
-char_sub_length = 105
-
-char_div_x_pos = 210
-char_div_y_pos = 705 - 290
-char_div_width = 105
-char_div_length = 105
-
-char_mul_x_pos = 0
-char_mul_y_pos = 705 - 290
-char_mul_width = 105
-char_mul_length = 105
-
-char_fd_x_pos = 315
-char_fd_y_pos = 600 - 290
-char_fd_width = 105
-char_fd_length = 105
-
-char_hs_x_pos = 420/2 - 105
-char_hs_y_pos = 520
-char_hs_width = 105
-char_hs_length = 210
-
 list_of_inputs = []
 numbers = []
 operator = []
-history = [] # for making the history later on
+history = [] # now i just need to dispay it somehow/somewhere
 
 # Load the image, and getting the rect/hitbox in a sense
-char_0 = pygame.image.load("sprites/Char-0.png")
-char_0 = pygame.transform.scale(char_0, (char_0_length, char_0_width))
-char_0_rect = char_0.get_rect(topleft=(char_0_x_pos, char_0_y_pos))
+char_0 = pygame.image.load(spriteinfo["char_0"]["path"])
+char_0 = pygame.transform.scale(char_0, spriteinfo["char_0"]["size"])
+char_0_rect = char_0.get_rect(topleft=spriteinfo["char_0"]["pos"])
 
-char_1 = pygame.image.load("sprites/Char-1.png")
-char_1 = pygame.transform.scale(char_1, (char_1_length, char_1_width))  # Resize the image
-char_1_rect = char_1.get_rect(topleft=(char_1_x_pos, char_1_y_pos))
+char_1 = pygame.image.load(spriteinfo["char_1"]["path"])
+char_1 = pygame.transform.scale(char_1, spriteinfo["char_1"]["size"])  # Resize the image
+char_1_rect = char_1.get_rect(topleft=spriteinfo["char_1"]["pos"])
 
-char_add = pygame.image.load("sprites/Char-Add.png")
-char_add = pygame.transform.scale(char_add, (char_add_length, char_add_width))
-char_add_rect = char_add.get_rect(topleft=(char_add_x_pos, char_add_y_pos))
+char_add = pygame.image.load(spriteinfo["char_add"]["path"])
+char_add = pygame.transform.scale(char_add, spriteinfo["char_add"]["size"])
+char_add_rect = char_add.get_rect(topleft=spriteinfo["char_add"]["pos"])
 
-char_equal = pygame.image.load("sprites/Char-Equal.png")
-char_equal = pygame.transform.scale(char_equal, (char_equal_length, char_equal_width))
-char_equal_rect = char_equal.get_rect(topleft=(char_equal_x_pos, char_equal_y_pos))
+char_equal = pygame.image.load(spriteinfo["char_equal"]["path"])
+char_equal = pygame.transform.scale(char_equal, spriteinfo["char_equal"]["size"])
+char_equal_rect = char_equal.get_rect(topleft=spriteinfo["char_equal"]["pos"])
 
-char_2 = pygame.image.load("sprites/Char-2.png")
-char_2 = pygame.transform.scale(char_2, (char_2_length, char_2_width))
-char_2_rect = char_2.get_rect(topleft=(char_2_x_pos, char_2_y_pos))
+char_2 = pygame.image.load(spriteinfo["char_2"]["path"])
+char_2 = pygame.transform.scale(char_2, spriteinfo["char_2"]["size"])
+char_2_rect = char_2.get_rect(topleft=spriteinfo["char_2"]["pos"])
 
-char_3 = pygame.image.load("sprites/Char-3.png")
-char_3 = pygame.transform.scale(char_3, (char_3_length, char_3_width))
-char_3_rect = char_3.get_rect(topleft=(char_3_x_pos, char_3_y_pos))
+char_3 = pygame.image.load(spriteinfo["char_3"]["path"])
+char_3 = pygame.transform.scale(char_3, spriteinfo["char_3"]["size"])
+char_3_rect = char_3.get_rect(topleft=spriteinfo["char_3"]["pos"])
 
-char_4 = pygame.image.load("sprites/Char-4.png")
-char_4 = pygame.transform.scale(char_4, (char_4_length, char_4_width))
-char_4_rect = char_4.get_rect(topleft=(char_4_x_pos, char_4_y_pos))
+char_4 = pygame.image.load(spriteinfo["char_4"]["path"])
+char_4 = pygame.transform.scale(char_4, spriteinfo["char_4"]["size"])
+char_4_rect = char_4.get_rect(topleft=spriteinfo["char_4"]["pos"])
 
-char_5 = pygame.image.load("sprites/Char-5.png")
-char_5 = pygame.transform.scale(char_5, (char_5_length, char_5_width))
-char_5_rect = char_5.get_rect(topleft=(char_5_x_pos, char_5_y_pos))
+char_5 = pygame.image.load(spriteinfo["char_5"]["path"])
+char_5 = pygame.transform.scale(char_5, spriteinfo["char_5"]["size"])
+char_5_rect = char_5.get_rect(topleft=spriteinfo["char_5"]["pos"])
 
-char_6 = pygame.image.load("sprites/Char-6.png")
-char_6 = pygame.transform.scale(char_6, (char_6_length, char_6_width))
-char_6_rect = char_6.get_rect(topleft=(char_6_x_pos, char_6_y_pos))
+char_6 = pygame.image.load(spriteinfo["char_6"]["path"])
+char_6 = pygame.transform.scale(char_6, spriteinfo["char_6"]["size"])
+char_6_rect = char_6.get_rect(topleft=spriteinfo["char_6"]["pos"])
 
-char_7 = pygame.image.load("sprites/Char-7.png")
-char_7 = pygame.transform.scale(char_7, (char_7_length, char_7_width))
-char_7_rect = char_7.get_rect(topleft=(char_7_x_pos, char_7_y_pos))
+char_7 = pygame.image.load(spriteinfo["char_7"]["path"])
+char_7 = pygame.transform.scale(char_7, spriteinfo["char_7"]["size"])
+char_7_rect = char_7.get_rect(topleft=spriteinfo["char_7"]["pos"])
 
-char_8 = pygame.image.load("sprites/Char-8.png")
-char_8 = pygame.transform.scale(char_8, (char_8_length, char_8_width))
-char_8_rect = char_8.get_rect(topleft=(char_8_x_pos, char_8_y_pos))
+char_8 = pygame.image.load(spriteinfo["char_8"]["path"])
+char_8 = pygame.transform.scale(char_8, spriteinfo["char_8"]["size"])
+char_8_rect = char_8.get_rect(topleft=spriteinfo["char_8"]["pos"])
 
-char_9 = pygame.image.load("sprites/Char-9.png")
-char_9 = pygame.transform.scale(char_9, (char_9_length, char_9_width))
-char_9_rect = char_9.get_rect(topleft=(char_9_x_pos, char_9_y_pos))
+char_9 = pygame.image.load(spriteinfo["char_9"]["path"])
+char_9 = pygame.transform.scale(char_9, spriteinfo["char_9"]["size"])
+char_9_rect = char_9.get_rect(topleft=spriteinfo["char_9"]["pos"])
 
-char_sub = pygame.image.load("sprites/Char-Subtraction.png")
-char_sub = pygame.transform.scale(char_sub, (char_sub_length, char_sub_width))
-char_sub_rect = char_sub.get_rect(topleft=(char_sub_x_pos, char_sub_y_pos))
+char_sub = pygame.image.load(spriteinfo["char_sub"]["path"])
+char_sub = pygame.transform.scale(char_sub, spriteinfo["char_sub"]["size"])
+char_sub_rect = char_sub.get_rect(topleft=spriteinfo["char_sub"]["pos"])
 
-char_div = pygame.image.load("sprites/Char-Division.png")
-char_div = pygame.transform.scale(char_div, (char_div_length, char_div_width))
-char_div_rect = char_div.get_rect(topleft=(char_div_x_pos, char_div_y_pos))
+char_div = pygame.image.load(spriteinfo["char_div"]["path"])
+char_div = pygame.transform.scale(char_div, spriteinfo["char_div"]["size"])
+char_div_rect = char_div.get_rect(topleft=spriteinfo["char_div"]["pos"])
 
-char_mul = pygame.image.load("sprites/Char-Multiplication.png")
-char_mul = pygame.transform.scale(char_mul, (char_mul_length, char_mul_width))
-char_mul_rect = char_mul.get_rect(topleft=(char_mul_x_pos, char_mul_y_pos))
+char_mul = pygame.image.load(spriteinfo["char_mul"]["path"])
+char_mul = pygame.transform.scale(char_mul, spriteinfo["char_mul"]["size"])
+char_mul_rect = char_mul.get_rect(topleft=spriteinfo["char_mul"]["pos"])
 
-char_fd = pygame.image.load("sprites/Char-Floored_Division.png")
-char_fd = pygame.transform.scale(char_fd, (char_fd_length, char_fd_width))
-char_fd_rect = char_fd.get_rect(topleft=(char_fd_x_pos, char_fd_y_pos))
+char_fd = pygame.image.load(spriteinfo["char_fd"]["path"])
+char_fd = pygame.transform.scale(char_fd, spriteinfo["char_fd"]["size"])
+char_fd_rect = char_fd.get_rect(topleft=spriteinfo["char_fd"]["pos"])
 
-char_history = pygame.image.load("sprites/Char-History.png")
-char_history = pygame.transform.scale(char_history, (char_hs_length, char_hs_width))
-char_history_rect = char_history.get_rect(topleft=(char_hs_x_pos, char_hs_y_pos))
+char_history = pygame.image.load(spriteinfo["char_history"]["path"])
+char_history = pygame.transform.scale(char_history, spriteinfo["char_history"]["size"])
+char_history_rect = char_history.get_rect(topleft=spriteinfo["char_history"]["pos"])
 
 # this does the math :)
 def equation(inputs):
