@@ -1,5 +1,4 @@
 import pygame
-from pygame import *
 
 # initializes pygame
 pygame.init()
@@ -33,7 +32,7 @@ spriteinfo = {
     "char_mul": {"path": "sprites/Char-Multiplication.png", "pos": (0, 705 - 290), "size": (105, 105)},
     "char_fd": {"path": "sprites/Char-Floored_Division.png", "pos": (315, 600 - 290), "size": (105, 105)},
     "char_equal": {"path": "sprites/Char-Equal.png", "pos": (315, 705 - 290), "size": (105, 105)},
-    "char_history": {"path": "sprites/Char-History.png", "pos": (420/2 - 105, 520), "size": (105, 210)},
+    "char_history": {"path": "sprites/Char-History.png", "pos": (420/2 - 105, 520), "size": (210, 105)},
 }
 
 def get_font_size(base_size, text):
